@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+	id 'idea'
+    id 'org.inferred.processors' version '1.2.5'
+}
+
+sourceCompatibility ='1.8'
+
+dependencies {
+    compile 'com.google.guava:guava:21.0-rc2'
+
+    processor 'org.immutables:value:2.4.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.5.5'
+}
