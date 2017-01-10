@@ -13,7 +13,9 @@ public interface Value {
     String value();
 
     /**
-     * Constructs a {@link Value} using a string as the value. The string cannot be null or empty.
+     * Constructs a {@link Value} using a string as the value.
+     *
+     * @throws IllegalArgumentException if the string is null or empty
      */
     static Value of(String value) {
         checkArgument(!Strings.isNullOrEmpty(value));
