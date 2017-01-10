@@ -7,3 +7,8 @@ build/
 *.ipr
 *.iml
 *.iws
+
+# Java
+generated_src
+generated_testSrc
+*.class
