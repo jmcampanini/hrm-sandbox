@@ -2,7 +2,7 @@ package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Inbox;
 import com.github.jmcampanini.hrm.emulator.ProgramEndException;
-import com.github.jmcampanini.hrm.emulator.Value;
+import com.github.jmcampanini.hrm.emulator.Thing;
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 
@@ -21,9 +21,9 @@ public class DefaultInboxTests {
     @Test
     public void take_gets_next_value() {
         Inbox inbox = DefaultInbox.withValues(ImmutableList.of(
-                Value.of("a"),
-                Value.of("b"),
-                Value.of("c")));
+                Thing.of("a"),
+                Thing.of("b"),
+                Thing.of("c")));
 
         try {
             assertThat(inbox.take().value(), equalTo("a"));

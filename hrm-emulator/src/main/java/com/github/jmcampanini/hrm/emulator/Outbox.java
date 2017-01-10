@@ -8,12 +8,12 @@ import java.util.List;
 public interface Outbox {
 
     /**
-     * Outputs the {@link Value} from the HRM CPU. The value cannot be null.
+     * Outputs the {@link Thing} from the HRM CPU. The thing cannot be null.
      */
-    void put(Value value);
+    void put(Thing thing);
 
     /**
      * The data that has been outputted, in order.
      */
-    List<Value> data();
+    List<Thing> data();
 }

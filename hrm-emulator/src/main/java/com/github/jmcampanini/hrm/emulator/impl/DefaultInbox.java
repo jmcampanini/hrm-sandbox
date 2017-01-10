@@ -2,7 +2,7 @@ package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Inbox;
 import com.github.jmcampanini.hrm.emulator.ProgramEndException;
-import com.github.jmcampanini.hrm.emulator.Value;
+import com.github.jmcampanini.hrm.emulator.Thing;
 import com.google.common.collect.Queues;
 
 import java.util.Queue;
@@ -14,9 +14,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class DefaultInbox implements Inbox {
 
-    private final Queue<Value> queue;
+    private final Queue<Thing> queue;
 
-    DefaultInbox(Queue<Value> queue) {
+    DefaultInbox(Queue<Thing> queue) {
         this.queue = checkNotNull(queue);
     }
 
@@ -24,13 +24,13 @@ public class DefaultInbox implements Inbox {
         return new DefaultInbox(Queues.newArrayDeque());
     }
 
-    public static Inbox withValues(Iterable<Value> values) {
-        checkNotNull(values);
-        return new DefaultInbox(Queues.newArrayDeque(values));
+    public static Inbox withValues(Iterable<Thing> things) {
+        checkNotNull(things);
+        return new DefaultInbox(Queues.newArrayDeque(things));
     }
 
     @Override
-    public Value take() throws ProgramEndException {
+    public Thing take() throws ProgramEndException {
         if (this.queue.isEmpty()) {
             throw new ProgramEndException();
         }

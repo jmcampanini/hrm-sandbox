@@ -1,25 +1,26 @@
 package com.github.jmcampanini.hrm.emulator;
 
 import com.google.common.base.Strings;
+import org.immutables.value.Value;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Represents a value in the HRM CPU.
+ * Represents a thing in the HRM CPU.
  */
-@org.immutables.value.Value.Immutable
-public interface Value {
+@Value.Immutable
+public interface Thing {
 
     String value();
 
     /**
-     * Constructs a {@link Value} using a string as the value.
+     * Constructs a {@link Thing} using a string as the thing.
      *
      * @throws IllegalArgumentException if the string is null or empty
      */
-    static Value of(String value) {
+    static Thing of(String value) {
         checkArgument(!Strings.isNullOrEmpty(value));
-        return ImmutableValue.builder()
+        return ImmutableThing.builder()
                 .value(value)
                 .build();
     }

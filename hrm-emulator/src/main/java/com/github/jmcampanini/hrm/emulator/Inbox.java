@@ -6,9 +6,9 @@ package com.github.jmcampanini.hrm.emulator;
 public interface Inbox {
 
     /**
-     * Returns the next {@link Value} from the inbox.
+     * Returns the next {@link Thing} from the inbox.
      *
      * @throws ProgramEndException when the inbox is empty
      */
-    Value take() throws ProgramEndException;
+    Thing take() throws ProgramEndException;
 }

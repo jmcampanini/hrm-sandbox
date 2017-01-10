@@ -1,7 +1,7 @@
 package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Outbox;
-import com.github.jmcampanini.hrm.emulator.Value;
+import com.github.jmcampanini.hrm.emulator.Thing;
 import org.junit.Test;
 
 import java.util.List;
@@ -23,11 +23,11 @@ public class DefaultOutboxTests {
 
     @Test
     public void outputted_data_is_stored_in_order() {
-        this.outbox.put(Value.of("a"));
-        this.outbox.put(Value.of("b"));
-        this.outbox.put(Value.of("c"));
+        this.outbox.put(Thing.of("a"));
+        this.outbox.put(Thing.of("b"));
+        this.outbox.put(Thing.of("c"));
 
-        List<Value> data = this.outbox.data();
+        List<Thing> data = this.outbox.data();
         assertThat(data.size(), equalTo(3));
         assertThat(data.get(0).value(), equalTo("a"));
         assertThat(data.get(1).value(), equalTo("b"));

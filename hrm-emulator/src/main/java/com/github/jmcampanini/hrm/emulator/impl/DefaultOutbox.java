@@ -1,7 +1,7 @@
 package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Outbox;
-import com.github.jmcampanini.hrm.emulator.Value;
+import com.github.jmcampanini.hrm.emulator.Thing;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
@@ -14,20 +14,20 @@ import static com.google.common.base.Preconditions.checkArgument;
  */
 public class DefaultOutbox implements Outbox {
 
-    private final List<Value> data;
+    private final List<Thing> data;
 
     public DefaultOutbox() {
         this.data = Lists.newArrayList();
     }
 
     @Override
-    public void put(Value value) {
-        checkArgument(value != null, "The value cannot be null.");
-        this.data.add(value);
+    public void put(Thing thing) {
+        checkArgument(thing != null, "The thing cannot be null.");
+        this.data.add(thing);
     }
 
     @Override
-    public List<Value> data() {
+    public List<Thing> data() {
         return ImmutableList.copyOf(this.data);
     }
 }
