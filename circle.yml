@@ -1,0 +1,16 @@
+machine:
+  java:
+    version: oraclejdk8
+  environment:
+    TERM: dumb
+
+dependencies:
+  override:
+    - ./gradlew resolveConfigurations
+
+test:
+  override:
+    - ./gradlew build
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/build/.*TEST.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
