@@ -3,21 +3,18 @@ package com.github.jmcampanini.hrm.emulator.commands;
 import com.github.jmcampanini.hrm.emulator.Command;
 import com.github.jmcampanini.hrm.emulator.Processor;
 import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
-import com.github.jmcampanini.hrm.emulator.Thing;
 import org.immutables.value.Value;
 
 /**
- * The {@link Command} to take input from the {@link com.github.jmcampanini.hrm.emulator.Inbox}.
+ * Do nothing, used mostly for testing.
  */
 @Value.Immutable
-public interface InboxCommand extends Command {
+public interface NoopCommand extends Command {
 
-    InboxCommand INSTANCE = ImmutableInboxCommand.builder().build();
+    NoopCommand INSTANCE = ImmutableNoopCommand.builder().build();
 
     @Override
     default void execute(Processor processor) throws ProgramEndSignal {
-        Thing thing = processor.inbox().take();
-        processor.worker().setThing(thing);
         processor.programCounter().increment();
     }
 }

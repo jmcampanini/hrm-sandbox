@@ -8,7 +8,7 @@ public interface Inbox {
     /**
      * Returns the next {@link Thing} from the inbox.
      *
-     * @throws ProgramEndException when the inbox is empty
+     * @throws ProgramEndSignal when the inbox is empty
      */
-    Thing take() throws ProgramEndException;
+    Thing take() throws ProgramEndSignal;
 }

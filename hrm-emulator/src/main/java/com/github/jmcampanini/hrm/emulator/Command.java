@@ -5,5 +5,5 @@ package com.github.jmcampanini.hrm.emulator;
  */
 public interface Command {
 
-    void execute(Processor processor) throws ProgramEndException;
+    void execute(Processor processor) throws ProgramEndSignal;
 }

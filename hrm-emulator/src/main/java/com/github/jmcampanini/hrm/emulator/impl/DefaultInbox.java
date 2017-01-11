@@ -1,7 +1,7 @@
 package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Inbox;
-import com.github.jmcampanini.hrm.emulator.ProgramEndException;
+import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
 import com.github.jmcampanini.hrm.emulator.Thing;
 import com.google.common.collect.Queues;
 
@@ -30,9 +30,9 @@ public class DefaultInbox implements Inbox {
     }
 
     @Override
-    public Thing take() throws ProgramEndException {
+    public Thing take() throws ProgramEndSignal {
         if (this.queue.isEmpty()) {
-            throw new ProgramEndException();
+            throw new ProgramEndSignal();
         }
 
         return this.queue.remove();

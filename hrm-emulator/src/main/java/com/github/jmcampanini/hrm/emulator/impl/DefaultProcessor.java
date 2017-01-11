@@ -3,7 +3,7 @@ package com.github.jmcampanini.hrm.emulator.impl;
 import com.github.jmcampanini.hrm.emulator.*;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -16,14 +16,14 @@ public class DefaultProcessor implements Processor {
     private final Outbox outbox;
     private final Worker worker;
     private final ProgramCounter programCounter;
-    private final AtomicLong steps;
+    private final AtomicInteger steps;
 
     public DefaultProcessor(Inbox inbox, Outbox outbox, Worker worker, ProgramCounter programCounter) {
         this.inbox = checkNotNull(inbox);
         this.outbox = checkNotNull(outbox);
         this.worker = checkNotNull(worker);
         this.programCounter = checkNotNull(programCounter);
-        this.steps = new AtomicLong(0);
+        this.steps = new AtomicInteger(0);
     }
 
     @Override
@@ -47,24 +47,24 @@ public class DefaultProcessor implements Processor {
     }
 
     @Override
-    public long steps() {
+    public int steps() {
         return this.steps.get();
     }
 
     @Override
     public void run(List<Command> program) {
         try {
-            int endOfProgram = program.size();
+            this.programCounter.setToIndex(0);
 
-            while (this.programCounter().get() < endOfProgram) {
+            while (this.programCounter().get() < program.size()) {
                 int nextCommandIndex = this.programCounter.get();
                 Command nextCommand = program.get(nextCommandIndex);
                 nextCommand.execute(this);
+                this.steps.incrementAndGet();
             }
 
-        } catch (ProgramEndException e) {
-            // TODO: handle this exception better
-            throw new RuntimeException(e);
+        } catch (ProgramEndSignal e) {
+            // ending gracefully
         }
     }
 }

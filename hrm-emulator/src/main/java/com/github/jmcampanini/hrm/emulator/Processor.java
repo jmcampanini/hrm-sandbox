@@ -15,7 +15,7 @@ public interface Processor {
 
     ProgramCounter programCounter();
 
-    long steps();
+    int steps();
 
     void run(List<Command> program);
 }

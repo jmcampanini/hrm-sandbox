@@ -5,28 +5,24 @@ import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
 import com.github.jmcampanini.hrm.emulator.Thing;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 
 /**
- * Tests for {@link InboxCommand}.
+ * Tests for {@link NoopCommand}.
  */
-public class InboxCommandTests {
+public class NoopCommandTests {
 
-    private final InboxCommand command = InboxCommand.INSTANCE;
+    private static final Thing THING_A = Thing.of("a");
+
+    private final NoopCommand command = NoopCommand.INSTANCE.INSTANCE;
     private final Processor processor = mock(Processor.class, RETURNS_DEEP_STUBS);
 
     @Test
     public void increments_the_counter() throws ProgramEndSignal {
+        when(this.processor.worker().thing()).thenReturn(Optional.of(THING_A));
         this.command.execute(this.processor);
         verify(this.processor.programCounter()).increment();
-    }
-
-    @Test
-    public void sets_worker_to_inbox_head() throws ProgramEndSignal {
-        Thing thing = Thing.of("a");
-        when(this.processor.inbox().take()).thenReturn(thing);
-
-        this.command.execute(this.processor);
-        verify(this.processor.worker()).setThing(eq(thing));
     }
 }

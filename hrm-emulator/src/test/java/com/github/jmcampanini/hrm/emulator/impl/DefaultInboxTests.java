@@ -1,7 +1,7 @@
 package com.github.jmcampanini.hrm.emulator.impl;
 
 import com.github.jmcampanini.hrm.emulator.Inbox;
-import com.github.jmcampanini.hrm.emulator.ProgramEndException;
+import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
 import com.github.jmcampanini.hrm.emulator.Thing;
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
@@ -12,8 +12,8 @@ import static org.junit.Assert.fail;
 
 public class DefaultInboxTests {
 
-    @Test(expected = ProgramEndException.class)
-    public void program_end_thrown_when_empty() throws ProgramEndException {
+    @Test(expected = ProgramEndSignal.class)
+    public void program_end_thrown_when_empty() throws ProgramEndSignal {
         Inbox inbox = DefaultInbox.empty();
         inbox.take();
     }
@@ -33,7 +33,7 @@ public class DefaultInboxTests {
             inbox.take();
             fail("failed since the last take should throw ProgramEnd");
 
-        } catch (ProgramEndException e) {
+        } catch (ProgramEndSignal e) {
             // success!
         }
     }
