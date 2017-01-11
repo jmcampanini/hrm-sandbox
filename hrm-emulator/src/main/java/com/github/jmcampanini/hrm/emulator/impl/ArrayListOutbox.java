@@ -12,11 +12,11 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * The default implementation of {@link Outbox}.
  */
-public class DefaultOutbox implements Outbox {
+public class ArrayListOutbox implements Outbox {
 
     private final List<Thing> data;
 
-    public DefaultOutbox() {
+    public ArrayListOutbox() {
         this.data = Lists.newArrayList();
     }
 

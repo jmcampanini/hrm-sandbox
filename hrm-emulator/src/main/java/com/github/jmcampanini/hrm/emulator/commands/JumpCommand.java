@@ -1,7 +1,8 @@
 package com.github.jmcampanini.hrm.emulator.commands;
 
 import com.github.jmcampanini.hrm.emulator.Command;
-import com.github.jmcampanini.hrm.emulator.Processor;
+import com.github.jmcampanini.hrm.emulator.Cpu;
+import com.github.jmcampanini.hrm.emulator.Pointer;
 import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
 import org.immutables.value.Value;
 
@@ -17,7 +18,7 @@ public interface JumpCommand extends Command {
     }
 
     @Override
-    default void execute(Processor processor) throws ProgramEndSignal {
-        processor.programCounter().setToIndex(index());
+    default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
+        cmdPointer.setToIndex(index());
     }
 }

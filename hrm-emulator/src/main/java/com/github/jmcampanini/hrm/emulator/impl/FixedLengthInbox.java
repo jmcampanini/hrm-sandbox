@@ -12,21 +12,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Default implementation of {@link Inbox}. It is not thread-safe.
  */
-public class DefaultInbox implements Inbox {
+public class FixedLengthInbox implements Inbox {
 
     private final Queue<Thing> queue;
 
-    DefaultInbox(Queue<Thing> queue) {
+    FixedLengthInbox(Queue<Thing> queue) {
         this.queue = checkNotNull(queue);
     }
 
     public static Inbox empty() {
-        return new DefaultInbox(Queues.newArrayDeque());
+        return new FixedLengthInbox(Queues.newArrayDeque());
     }
 
     public static Inbox withValues(Iterable<Thing> things) {
         checkNotNull(things);
-        return new DefaultInbox(Queues.newArrayDeque(things));
+        return new FixedLengthInbox(Queues.newArrayDeque(things));
     }
 
     @Override

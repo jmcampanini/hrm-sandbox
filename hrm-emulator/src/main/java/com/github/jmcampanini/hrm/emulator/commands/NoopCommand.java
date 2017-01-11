@@ -1,7 +1,8 @@
 package com.github.jmcampanini.hrm.emulator.commands;
 
 import com.github.jmcampanini.hrm.emulator.Command;
-import com.github.jmcampanini.hrm.emulator.Processor;
+import com.github.jmcampanini.hrm.emulator.Cpu;
+import com.github.jmcampanini.hrm.emulator.Pointer;
 import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
 import org.immutables.value.Value;
 
@@ -14,7 +15,7 @@ public interface NoopCommand extends Command {
     NoopCommand INSTANCE = ImmutableNoopCommand.builder().build();
 
     @Override
-    default void execute(Processor processor) throws ProgramEndSignal {
-        processor.programCounter().increment();
+    default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
+        cmdPointer.increment();
     }
 }

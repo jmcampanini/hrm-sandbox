@@ -1,9 +1,6 @@
 package com.github.jmcampanini.hrm.emulator.commands;
 
-import com.github.jmcampanini.hrm.emulator.Command;
-import com.github.jmcampanini.hrm.emulator.Processor;
-import com.github.jmcampanini.hrm.emulator.ProgramEndSignal;
-import com.github.jmcampanini.hrm.emulator.Thing;
+import com.github.jmcampanini.hrm.emulator.*;
 import org.immutables.value.Value;
 
 /**
@@ -15,9 +12,9 @@ public interface InboxCommand extends Command {
     InboxCommand INSTANCE = ImmutableInboxCommand.builder().build();
 
     @Override
-    default void execute(Processor processor) throws ProgramEndSignal {
-        Thing thing = processor.inbox().take();
-        processor.worker().setThing(thing);
-        processor.programCounter().increment();
+    default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
+        Thing thing = cpu.inbox().take();
+        cpu.worker().setThing(thing);
+        cmdPointer.increment();
     }
 }

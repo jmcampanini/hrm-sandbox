@@ -1,12 +1,10 @@
 package com.github.jmcampanini.hrm.emulator.levels;
 
-import com.github.jmcampanini.hrm.emulator.Command;
-import com.github.jmcampanini.hrm.emulator.Processor;
-import com.github.jmcampanini.hrm.emulator.Thing;
+import com.github.jmcampanini.hrm.emulator.*;
 import com.github.jmcampanini.hrm.emulator.commands.InboxCommand;
 import com.github.jmcampanini.hrm.emulator.commands.JumpCommand;
 import com.github.jmcampanini.hrm.emulator.commands.OutboxCommand;
-import com.github.jmcampanini.hrm.emulator.impl.*;
+import com.github.jmcampanini.hrm.emulator.impl.FixedLengthInbox;
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
 
@@ -16,6 +14,9 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Test that simulates Level 2.
+ */
 public class Level2 {
 
     private static final ImmutableList<Command> PROGRAM = ImmutableList.of(
@@ -45,21 +46,21 @@ public class Level2 {
     }
 
     private void assertProgramWorks(ImmutableList<String> input, ImmutableList<String> output) {
-        Processor processor = new DefaultProcessor(
-                DefaultInbox.withValues(input.stream()
-                        .map(s -> Thing.of(s))
-                        .collect(Collectors.toList())),
-                new DefaultOutbox(),
-                new DefaultWorker(),
-                DefaultProgramCounter.zeroed());
+        Inbox inbox = FixedLengthInbox.withValues(input.stream()
+                .map(s -> Thing.of(s))
+                .collect(Collectors.toList()));
 
-        processor.run(PROGRAM);
+        Cpu cpu = ImmutableCpu.builder()
+                .inbox(inbox)
+                .build();
 
-        List<Thing> data = processor.outbox().data();
-        assertThat(data.size(), equalTo(output.size()));
+        cpu.processor().run(cpu, PROGRAM);
 
-        for (int i = 0; i < output.size(); i++) {
-            assertThat(data.get(i).value(), equalTo(output.get(i)));
-        }
+        List<String> data = cpu.outbox()
+                .data().stream()
+                .map(Thing::value)
+                .collect(Collectors.toList());
+
+        assertThat(data, equalTo(output));
     }
 }

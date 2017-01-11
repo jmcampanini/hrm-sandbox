@@ -10,11 +10,11 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 /**
- * Test for {@link DefaultOutbox}.
+ * Test for {@link ArrayListOutbox}.
  */
-public class DefaultOutboxTests {
+public class ArrayListOutboxTests {
 
-    private final Outbox outbox = new DefaultOutbox();
+    private final Outbox outbox = new ArrayListOutbox();
 
     @Test(expected = IllegalArgumentException.class)
     public void cannot_put_null_value() {

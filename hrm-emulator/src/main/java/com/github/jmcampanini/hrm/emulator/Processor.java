@@ -3,19 +3,12 @@ package com.github.jmcampanini.hrm.emulator;
 import java.util.List;
 
 /**
- * Represents the HMR CPU.
+ * Processes the program on the provided {@link Cpu}.
  */
 public interface Processor {
 
-    Inbox inbox();
-
-    Outbox outbox();
-
-    Worker worker();
-
-    ProgramCounter programCounter();
-
-    int steps();
-
-    void run(List<Command> program);
+    /**
+     * Returns the number of steps to execute the program.
+     */
+    int run(Cpu cpu, List<Command> program);
 }

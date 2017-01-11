@@ -1,9 +1,9 @@
 package com.github.jmcampanini.hrm.emulator;
 
 /**
- * Represents a command for the {@link Processor}.
+ * Represents a command for the {@link Cpu}.
  */
 public interface Command {
 
-    void execute(Processor processor) throws ProgramEndSignal;
+    void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal;
 }

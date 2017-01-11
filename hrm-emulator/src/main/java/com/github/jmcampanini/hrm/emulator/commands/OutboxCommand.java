@@ -12,12 +12,11 @@ public interface OutboxCommand extends Command {
     OutboxCommand INSTANCE = ImmutableOutboxCommand.builder().build();
 
     @Override
-    default void execute(Processor processor) throws ProgramEndSignal {
-        Thing thing = processor.worker()
-                .thing()
+    default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
+        Thing thing = cpu.worker().thing()
                 .orElseThrow(() -> new ProcessorException("The worker has no thing to put into the outbox."));
 
-        processor.outbox().put(thing);
-        processor.programCounter().increment();
+        cpu.outbox().put(thing);
+        cmdPointer.increment();
     }
 }

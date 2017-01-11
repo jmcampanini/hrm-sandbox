@@ -1,9 +1,9 @@
 package com.github.jmcampanini.hrm.emulator;
 
 /**
- * Represents the location in the program that is currently running.
+ * Represents the location in the program.
  */
-public interface ProgramCounter {
+public interface Pointer {
 
     int get();
 

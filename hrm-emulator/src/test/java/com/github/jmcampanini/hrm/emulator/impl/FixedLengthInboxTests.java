@@ -10,17 +10,20 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-public class DefaultInboxTests {
+/**
+ * Tests for {@link FixedLengthInbox}.
+ */
+public class FixedLengthInboxTests {
 
     @Test(expected = ProgramEndSignal.class)
     public void program_end_thrown_when_empty() throws ProgramEndSignal {
-        Inbox inbox = DefaultInbox.empty();
+        Inbox inbox = FixedLengthInbox.empty();
         inbox.take();
     }
 
     @Test
     public void take_gets_next_value() {
-        Inbox inbox = DefaultInbox.withValues(ImmutableList.of(
+        Inbox inbox = FixedLengthInbox.withValues(ImmutableList.of(
                 Thing.of("a"),
                 Thing.of("b"),
                 Thing.of("c")));
