@@ -24,4 +24,8 @@ public interface Thing {
                 .value(value)
                 .build();
     }
+
+    static Thing of(char value) {
+        return of(String.valueOf(value));
+    }
 }

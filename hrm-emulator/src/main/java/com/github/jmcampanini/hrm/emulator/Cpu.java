@@ -1,9 +1,6 @@
 package com.github.jmcampanini.hrm.emulator;
 
-import com.github.jmcampanini.hrm.emulator.impl.ArrayListOutbox;
-import com.github.jmcampanini.hrm.emulator.impl.DefaultProcessor;
-import com.github.jmcampanini.hrm.emulator.impl.DefaultWorker;
-import com.github.jmcampanini.hrm.emulator.impl.FixedLengthInbox;
+import com.github.jmcampanini.hrm.emulator.impl.*;
 import org.immutables.value.Value;
 
 /**
@@ -25,6 +22,11 @@ public interface Cpu {
     @Value.Default
     default Worker worker() {
         return new DefaultWorker();
+    }
+
+    @Value.Default
+    default Floor floor() {
+        return DefaultFloor.empty(0);
     }
 
     @Value.Default
