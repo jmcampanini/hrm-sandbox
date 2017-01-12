@@ -19,7 +19,7 @@ public class CopyToCommandTests {
     private final Cpu cpu = mock(Cpu.class, RETURNS_DEEP_STUBS);
     private final Pointer cmdPointer = AtomicPointer.zeroed();
 
-    @Test(expected = ProcessorException.class)
+    @Test(expected = WorkerEmptyException.class)
     public void errors_if_worker_is_empty() throws ProgramEndSignal {
         when(this.cpu.worker().thing()).thenReturn(Optional.empty());
 

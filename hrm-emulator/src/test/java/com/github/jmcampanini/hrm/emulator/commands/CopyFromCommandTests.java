@@ -18,7 +18,7 @@ public class CopyFromCommandTests {
     private final Cpu cpu = mock(Cpu.class, RETURNS_DEEP_STUBS);
     private final Pointer cmdPointer = AtomicPointer.zeroed();
 
-    @Test(expected = ProcessorException.class)
+    @Test(expected = TileEmptyException.class)
     public void errors_if_floor_empty() throws ProgramEndSignal {
         int tileNum = 1;
         when(this.cpu.floor().get(tileNum)).thenReturn(Optional.empty());

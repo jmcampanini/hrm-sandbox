@@ -20,7 +20,7 @@ public interface CopyFromCommand extends Command {
     @Override
     default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
         Thing thing = cpu.floor().get(tileNum())
-                .orElseThrow(() -> new ProcessorException("No value in floor tile: " + tileNum()));
+                .orElseThrow(() -> new TileEmptyException(tileNum()));
 
         cpu.worker().setThing(thing);
         cmdPointer.increment();

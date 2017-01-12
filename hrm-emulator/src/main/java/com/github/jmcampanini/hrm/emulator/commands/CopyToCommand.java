@@ -20,7 +20,7 @@ public interface CopyToCommand extends Command {
     @Override
     default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
         Thing thing = cpu.worker().thing()
-                .orElseThrow(() -> new ProcessorException("Worker has no thing"));
+                .orElseThrow(WorkerEmptyException::new);
 
         cpu.floor().set(tileNum(), thing);
         cmdPointer.increment();

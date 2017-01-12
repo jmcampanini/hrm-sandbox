@@ -36,4 +36,11 @@ public interface Thing {
             return Thing.of(value.charAt(0));
         }
     }
+
+    default Thing add(Thing that) {
+        int numThis = Integer.parseInt(this.value());
+        int numThat = Integer.parseInt(that.value());
+
+        return Thing.of(numThis + numThat);
+    }
 }

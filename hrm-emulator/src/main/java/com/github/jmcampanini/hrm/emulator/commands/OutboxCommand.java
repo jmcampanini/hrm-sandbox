@@ -14,7 +14,7 @@ public interface OutboxCommand extends Command {
     @Override
     default void execute(Cpu cpu, Pointer cmdPointer) throws ProgramEndSignal {
         Thing thing = cpu.worker().thing()
-                .orElseThrow(() -> new ProcessorException("The worker has no thing to put into the outbox."));
+                .orElseThrow(WorkerEmptyException::new);
 
         cpu.outbox().put(thing);
         cmdPointer.increment();

@@ -21,7 +21,7 @@ public class OutboxCommandTests {
     private final Cpu cpu = mock(Cpu.class, RETURNS_DEEP_STUBS);
     private final Pointer cmdPointer = AtomicPointer.zeroed();
 
-    @Test(expected = ProcessorException.class)
+    @Test(expected = WorkerEmptyException.class)
     public void error_if_worker_empty() throws ProgramEndSignal {
         when(this.cpu.worker().thing()).thenReturn(Optional.empty());
         this.command.execute(this.cpu, this.cmdPointer);
