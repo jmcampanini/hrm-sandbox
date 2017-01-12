@@ -35,4 +35,24 @@ public class ThingTests {
             assertThat(Thing.of(vali).value(), equalTo(String.valueOf(vali)));
         }
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void string_cannot_be_null() {
+        Thing.of(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void string_cannot_be_blank() {
+        Thing.of(" ");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void string_cannot_be_more_than_one_letter() {
+        Thing.of("ab");
+    }
+
+    @Test
+    public void string_can_be_multi_digit_number() {
+        assertThat(Thing.of("123").value(), equalTo("123"));
+    }
 }

@@ -24,4 +24,16 @@ public interface Thing {
                 .value(String.valueOf(value))
                 .build();
     }
+
+    static Thing of(String value) {
+        checkArgument(value != null);
+
+        try {
+            return Thing.of(Integer.parseInt(value));
+
+        } catch (NumberFormatException e) {
+            checkArgument(value.length() == 1, "Must be single character");
+            return Thing.of(value.charAt(0));
+        }
+    }
 }
