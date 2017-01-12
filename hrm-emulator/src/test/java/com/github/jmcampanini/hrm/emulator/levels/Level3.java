@@ -30,13 +30,13 @@ public class Level3 {
     @Test
     public void scenario_1() {
         assertProgramWorks(
-                ImmutableList.of("-99", "-99", "-99", "-99"),
+                ImmutableList.of(-99, -99, -99, -99),
                 ImmutableList.of("b", "u", "g"));
     }
 
-    private void assertProgramWorks(ImmutableList<String> input, ImmutableList<String> output) {
+    private void assertProgramWorks(ImmutableList<Integer> input, ImmutableList<String> output) {
         Inbox inbox = FixedLengthInbox.withValues(input.stream()
-                .map(s -> Thing.of(s))
+                .map(Thing::of)
                 .collect(Collectors.toList()));
 
         Floor floor = DefaultFloor.prepopulated(6, ImmutableList.of(
@@ -45,7 +45,7 @@ public class Level3 {
                 Thing.of('x'),      // 2
                 Thing.of('g'),      // 3
                 Thing.of('b'),      // 4
-                Thing.of('e')));
+                Thing.of('e')));    // 5
 
         Cpu cpu = ImmutableCpu.builder()
                 .inbox(inbox)

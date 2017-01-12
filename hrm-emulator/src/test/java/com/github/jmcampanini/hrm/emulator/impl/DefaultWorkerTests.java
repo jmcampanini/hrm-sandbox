@@ -21,16 +21,16 @@ public class DefaultWorkerTests {
 
     @Test
     public void can_set_value() {
-        String val = "a";
+        char val = 'a';
         this.worker.setThing(Thing.of(val));
 
         assertThat(this.worker.thing().isPresent(), equalTo(true));
-        assertThat(this.worker.thing().get().value(), equalTo(val));
+        assertThat(this.worker.thing().get().value(), equalTo(String.valueOf(val)));
     }
 
     @Test
     public void clear_sets_to_empty() {
-        this.worker.setThing(Thing.of("a"));
+        this.worker.setThing(Thing.of('a'));
         assertThat(this.worker.thing().isPresent(), equalTo(true));
 
         this.worker.clear();

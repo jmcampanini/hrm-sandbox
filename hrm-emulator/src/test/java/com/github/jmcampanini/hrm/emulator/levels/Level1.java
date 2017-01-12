@@ -49,7 +49,7 @@ public class Level1 {
 
     private void assertProgramWorks(ImmutableList<String> input, ImmutableList<String> output) {
         Inbox inbox = FixedLengthInbox.withValues(input.stream()
-                .map(Thing::of)
+                .map(s -> Thing.of(s.charAt(0)))
                 .collect(Collectors.toList()));
 
         Cpu cpu = ImmutableCpu.builder()

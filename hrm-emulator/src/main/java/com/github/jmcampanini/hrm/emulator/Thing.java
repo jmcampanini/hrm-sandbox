@@ -1,6 +1,5 @@
 package com.github.jmcampanini.hrm.emulator;
 
-import com.google.common.base.Strings;
 import org.immutables.value.Value;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -13,19 +12,16 @@ public interface Thing {
 
     String value();
 
-    /**
-     * Constructs a {@link Thing} using a string as the thing.
-     *
-     * @throws IllegalArgumentException if the string is null or empty
-     */
-    static Thing of(String value) {
-        checkArgument(!Strings.isNullOrEmpty(value));
+    static Thing of(char value) {
+        checkArgument(Character.isLetter(value));
         return ImmutableThing.builder()
-                .value(value)
+                .value(String.valueOf(Character.toLowerCase(value)))
                 .build();
     }
 
-    static Thing of(char value) {
-        return of(String.valueOf(value));
+    static Thing of(int value) {
+        return ImmutableThing.builder()
+                .value(String.valueOf(value))
+                .build();
     }
 }

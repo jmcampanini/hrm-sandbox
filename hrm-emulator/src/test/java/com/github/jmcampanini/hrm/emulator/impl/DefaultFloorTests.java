@@ -36,11 +36,11 @@ public class DefaultFloorTests {
     public void create_preloaded_floor() {
         Floor floor = DefaultFloor.prepopulated(5,
                 Lists.newArrayList(
-                        Thing.of("a"),
+                        Thing.of('a'),
                         null,
-                        Thing.of("b"),
+                        Thing.of('b'),
                         null,
-                        Thing.of("c")));
+                        Thing.of('c')));
 
         assertThat(floor.get(0).get().value(), equalTo("a"));
         assertThat(floor.get(1).isPresent(), equalTo(false));

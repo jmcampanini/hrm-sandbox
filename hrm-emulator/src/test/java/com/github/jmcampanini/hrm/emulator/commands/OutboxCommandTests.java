@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
  */
 public class OutboxCommandTests {
 
-    private static final Thing THING_A = Thing.of("a");
+    private static final Thing THING_A = Thing.of('a');
 
     private final OutboxCommand command = OutboxCommand.INSTANCE;
     private final Cpu cpu = mock(Cpu.class, RETURNS_DEEP_STUBS);

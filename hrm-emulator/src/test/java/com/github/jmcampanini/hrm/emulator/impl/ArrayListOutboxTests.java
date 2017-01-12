@@ -23,9 +23,9 @@ public class ArrayListOutboxTests {
 
     @Test
     public void outputted_data_is_stored_in_order() {
-        this.outbox.put(Thing.of("a"));
-        this.outbox.put(Thing.of("b"));
-        this.outbox.put(Thing.of("c"));
+        this.outbox.put(Thing.of('a'));
+        this.outbox.put(Thing.of('b'));
+        this.outbox.put(Thing.of('c'));
 
         List<Thing> data = this.outbox.data();
         assertThat(data.size(), equalTo(3));

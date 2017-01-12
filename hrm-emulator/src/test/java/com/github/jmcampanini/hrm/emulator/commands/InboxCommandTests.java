@@ -28,7 +28,7 @@ public class InboxCommandTests {
 
     @Test
     public void sets_worker_to_inbox_head() throws ProgramEndSignal {
-        Thing thing = Thing.of("a");
+        Thing thing = Thing.of('a');
         when(this.cpu.inbox().take()).thenReturn(thing);
 
         this.command.execute(this.cpu, cmdPointer);

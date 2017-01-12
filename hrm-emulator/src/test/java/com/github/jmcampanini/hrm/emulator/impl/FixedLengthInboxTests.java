@@ -24,9 +24,9 @@ public class FixedLengthInboxTests {
     @Test
     public void take_gets_next_value() {
         Inbox inbox = FixedLengthInbox.withValues(ImmutableList.of(
-                Thing.of("a"),
-                Thing.of("b"),
-                Thing.of("c")));
+                Thing.of('a'),
+                Thing.of('b'),
+                Thing.of('c')));
 
         try {
             assertThat(inbox.take().value(), equalTo("a"));
